@@ -5,6 +5,8 @@ import 'package:mydog/controler/validar_email.dart';
 import 'package:mydog/routes/routes.dart';
 
 class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
+
   @override
   _LoginPageState createState() => _LoginPageState();
 }
@@ -138,6 +140,7 @@ class _LoginPageState extends State<LoginPage>
                                 borderRadius: BorderRadius.circular(10),
                                 borderSide: BorderSide.none,
                               ),
+                              errorStyle: TextStyle(color:Colors.white,fontSize: 14, ),
                               filled: true,
                             ),
                             keyboardType: TextInputType.emailAddress,
@@ -155,6 +158,7 @@ class _LoginPageState extends State<LoginPage>
                               hintText: 'Password',
                               fillColor: Colors.white,
                               filled: true,
+                              errorStyle: TextStyle(color:Colors.white,fontSize: 14, ),
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(10),
                                 borderSide: BorderSide.none,

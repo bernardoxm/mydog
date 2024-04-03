@@ -4,6 +4,8 @@ import 'package:mydog/components/animation_paw_login.dart';
 import 'package:mydog/routes/routes.dart';
 
 class SingUpPage extends StatefulWidget {
+  const SingUpPage({super.key});
+
   @override
   State<SingUpPage> createState() => _SingUpState();
 }
@@ -208,6 +210,7 @@ class _SingUpState extends State<SingUpPage> {
                       borderSide: BorderSide.none,
                     ),
                     filled: true,
+                    errorStyle: TextStyle(color:Colors.white,fontSize: 14, ),
                   ),
                   keyboardType: _getFieldKeyboardType(index),
                   obscureText: _getFieldObscureText(index),
