@@ -12,7 +12,7 @@ class _AnimatedPawsState extends State<AnimatedPaws> {
   late Timer _timer;
   double _pawOffsetX = 0.0;
   double _pawOffsetY = 0.0;
-  double _opacity = 1.0;
+  double _opacity = 10.0;
   final double _angle = 45.0; // Ângulo de movimento em graus
   final double _movementSpeed = 1; // Velocidade de movimento em pixels por segundo
 

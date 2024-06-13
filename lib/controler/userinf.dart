@@ -1,0 +1,1 @@
+//class useerif {Map userinf = {'username':, 'age':,};}

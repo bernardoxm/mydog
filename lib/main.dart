@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:mydog/pages/forgot.dart';
+import 'package:mydog/pages/home.dart';
 import 'package:mydog/pages/login.dart';
 import 'package:mydog/pages/singup.dart';
 import 'package:mydog/routes/routes.dart';
@@ -17,18 +18,21 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'MyPet',
       theme: ThemeData(
       
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        
        
-      ), home:  LoginPage(),
+      ), home:   const LoginPage(),
         routes: {
-          AppRoutes.LOGIN: (ctx) => LoginPage(),
-        AppRoutes.FORGOT: (ctx) => ForgotPage(),
-        AppRoutes.SINGUP: (ctx) => SingUpPage(),
+          AppRoutes.LOGIN: (ctx) =>  const LoginPage(),
+           AppRoutes.HOME: (ctx) =>  const HomePage(),
+        AppRoutes.FORGOT: (ctx) =>   const ForgotPage(),
+       AppRoutes.SINGUP: (ctx) =>   const SingUpPage(),
         },
 
        );
   }
 }
+// criar registro de vacina e um contador. 
