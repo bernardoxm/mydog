@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mydog/routes/routes.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -16,436 +15,245 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final orientation = MediaQuery.of(context).orientation;
+    final double widthprofile = orientation == Orientation.portrait
+        ? MediaQuery.of(context).size.width * 1
+        : MediaQuery.of(context).size.width * 1;
+
+    final double heightprofile = orientation == Orientation.portrait
+        ? MediaQuery.of(context).size.height * 0.4
+        : MediaQuery.of(context).size.height * 0.90;
+    final double avatarRadius = orientation == Orientation.portrait
+        ? MediaQuery.of(context).size.width * 0.07
+        : MediaQuery.of(context).size.width * 0.05;
+
 //conseitos de screen
     double fontSizeall = MediaQuery.of(context).size.width * 0.045;
     double heightbox = MediaQuery.of(context).size.width * 0.21;
     double widithbox = MediaQuery.of(context).size.width * 0.91;
     double widthphoto = MediaQuery.of(context).size.width * 0.21;
     double heightphoto = MediaQuery.of(context).size.width * 0.21;
-  double widthprofile = MediaQuery.of(context).size.width * 0.97;
-    double heightprofile = MediaQuery.of(context).size.width * 0.23;
-    
 
-    return  Container(
-        decoration:  const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-                Color.fromARGB(255, 255, 255, 255),
-                Color.fromARGB(255, 255, 255, 255),
-            ],
-          ),
-        ),
-        child: ListView(
+    return Scaffold(
+      body: SingleChildScrollView(
+        child: Column(
           children: [
-            Column(
-              children: [
-                 const SizedBox(height: 20),
-                Center(
-                  child: Container(
-                    height:heightprofile ,
-                    width: widthprofile,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(border),
-                      border: Border.all(color: Color.fromARGB(255, 0, 0, 0), width: 1),
-                                      color: Color.fromARGB(255, 255, 255, 255),
-
-                     
-                    ),
-                    child: Row(
-                      children: [
-                        Container(
-                          width: MediaQuery.of(context).size.width * 0.3,
-                          height: MediaQuery.of(context).size.width * 0.3,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(border),
-                           border: Border.all(color: Color.fromARGB(255, 255, 255, 255), width: 1),
-                                      color: Color.fromARGB(255, 255, 255, 255),
-                            image: const DecorationImage(
-                              image:
-                                  AssetImage('lib/files/petregistration.png'),
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              ' Name:',
-                              textAlign: TextAlign.left,
-                              style: TextStyle(
-                                  color: const Color.fromARGB(255, 0, 0, 0), fontSize: fontSizeall),
-                            ),
-                            Text(
-                              ' Age:',
-                              textAlign: TextAlign.left,
-                              style: TextStyle(
-                                  color: const Color.fromARGB(255, 0, 0, 0), fontSize: fontSizeall),
-                            )
-                          ],
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 10),
-                Center(
-                  child: Container(
-                    height: heightbox,
-                    width: widithbox,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(border),
-                      border: Border.all(color: Color.fromARGB(255, 0, 0, 0), width: 1),
-                                      color: Color.fromARGB(255, 255, 255, 255),
-
-                    ),
-                    child: Row(
-                      children: [
-                        Container(
-                          width: widthphoto,
-                          height: heightphoto,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(border),
-                             border: Border.all(color: Color.fromARGB(255, 255, 255, 255), width: 1),
-                                      color: Color.fromARGB(255, 255, 255, 255),
-                            image:  const DecorationImage(
-                              image:  AssetImage('lib/files/alarmicon.png'),
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Text(
-                              ' Register an Alarm',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: const Color.fromARGB(255, 0, 0, 0),
-                                fontSize: fontSizeall,
-                              ),
-                            ),
-                          ],
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 10),
-                Center(
-                  child: Container(
-                    height: heightbox,
-                    width: widithbox,
-                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(border),
-                      border: Border.all(color: Color.fromARGB(255, 0, 0, 0), width: 1),
-                                      color: Color.fromARGB(255, 255, 255, 255),
-
-                    ),
-                    child: Row(
-                      children: [
-                        Container(
-                          width: widthphoto,
-                          height: heightphoto,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(border),
-                             border: Border.all(color: Color.fromARGB(255, 255, 255, 255), width: 1),
-                                      color: Color.fromARGB(255, 255, 255, 255),
-                            image:  const DecorationImage(
-                              image:  AssetImage(
-                                  'lib/files/FoodRegisterIcon.png'),
-                              fit: BoxFit.fitHeight,
-                            ),
-                          ),
-                        ),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Text(
-                              ' Register an Foody ',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                  color: const Color.fromARGB(255, 0, 0, 0), fontSize: fontSizeall),
-                            ),
-                          ],
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 10),
-                Center(
-                  child: Container(
-                    height: heightbox,
-                    width: widithbox,
-                      decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(border),
-                      border: Border.all(color: Color.fromARGB(255, 0, 0, 0), width: 1),
-                                      color: Color.fromARGB(255, 255, 255, 255),
-
-                    ),
-                    child: Row(
-                      children: [
-                        Container(
-                          width: widthphoto,
-                          height: heightphoto,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(border),
-                             border: Border.all(color: Color.fromARGB(255, 255, 255, 255), width: 1),
-                                      color: Color.fromARGB(255, 255, 255, 255),
-                            image: const DecorationImage(
-                              image:
-                                  AssetImage('lib/files/trackbackicon.png'),
-                              fit: BoxFit.fitHeight,
-                            ),
-                          ),
-                        ),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            Text(
-                              '  Track Back  ',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                  color: const Color.fromARGB(255, 0, 0, 0), fontSize: fontSizeall),
-                            ),
-                          ],
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 10),
-                Center(
-                  child: Container(
-                    height: heightbox,
-                    width: widithbox,
-                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(border),
-                      border: Border.all(color: Color.fromARGB(255, 0, 0, 0), width: 1),
-                                      color: Color.fromARGB(255, 255, 255, 255),
-
-                    ),
-                    child: Row(
-                      children: [
-                        Container(
-                          width: widthphoto,
-                          height: heightphoto,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(border),
-                             border: Border.all(color: Color.fromARGB(255, 255, 255, 255), width: 1),
-                                      color: Color.fromARGB(255, 255, 255, 255),
-                            image: const DecorationImage(
-                              image: AssetImage(
-                                  'lib/files/parksnearyouicon.png'),
-                              fit: BoxFit.fitHeight,
-                            ),
-                          ),
-                        ),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Text(
-                              ' Parks near You ',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                  color: const Color.fromARGB(255, 0, 0, 0), fontSize: fontSizeall),
-                            ),
-                          ],
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-              const   SizedBox(height: 10),
-                Center(
-                  child: Container(
-                    height: heightbox,
-                    width: widithbox,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(border),
-                      border: Border.all(color: Color.fromARGB(255, 0, 0, 0), width: 1),
-                                      color: Color.fromARGB(255, 255, 255, 255),
-
-                    ),
-                    child: Row(
-                      children: [
-                        Container(
-                          width: widthphoto,
-                          height: heightphoto,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(border),
-                             border: Border.all(color: Color.fromARGB(255, 255, 255, 255), width: 1),
-                                      color: Color.fromARGB(255, 255, 255, 255),
-                            image: const DecorationImage(
-                              image: AssetImage('lib/files/bathicon.png'),
-                              fit: BoxFit.fitHeight,
-                            ),
-                          ),
-                        ),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Text(
-                              ' Pet bath ',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: const Color.fromARGB(255, 0, 0, 0),
-                                fontSize: fontSizeall,
-                              ),
-                            ),
-                          ],
-                        )
-                      ],
-                    ),
-                  ),
-                ),  const  SizedBox(height: 10),
-                Center(
-                  child: Container(
-                    height: heightbox,
-                    width: widithbox,
-                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(border),
-                      border: Border.all(color: Color.fromARGB(255, 0, 0, 0), width: 1),
-                                      color: Color.fromARGB(255, 255, 255, 255),
-
-                    ),
-                    child: Row(
-                      children: [
-                        Container(
-                          width: widthphoto,
-                          height: heightphoto,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(border),
-                             border: Border.all(color: Color.fromARGB(255, 255, 255, 255), width: 1),
-                                      color: Color.fromARGB(255, 255, 255, 255),
-                            image: const DecorationImage(
-                              image: AssetImage('lib/files/Vaccination.png'),
-                              fit: BoxFit.fitHeight,
-                            ),
-                          ),
-                        ),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Text(
-                              ' Vaccination  ',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: const Color.fromARGB(255, 0, 0, 0),
-                                fontSize: fontSizeall,
-                              ),
-                            ),
-                          ],
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-               const  SizedBox(height: 10),
-                SingleChildScrollView(
-                  child: Row(
-                      children: [ const  SizedBox(width: 10),
-                        Expanded(
-                          child: Container(
-                            padding: const EdgeInsets.all(1.0),
-                           
-                        height: MediaQuery.of(context).size.height * 0.1,
-                        width: MediaQuery.of(context).size.height * 0.15,
-                            decoration:  BoxDecoration(
-                                border: Border.all(color: Color.fromARGB(255, 0, 0, 0), width: 1),
-                                      color: Color.fromARGB(255, 255, 255, 255),
-                  
-                 
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(40),
-                    
-                  ),
-                  
-                            ),
-                            child: TextButton(
-                    onPressed: () {
-                      /// colocar funcao para localizar veterinario mais proximo
-                    },
-                    child:  Text(
-                      '(SOS)',
-                      style: TextStyle(
-                          color: const Color.fromARGB(255, 0, 0, 0),
-                          fontSize: fontSizeall,
-                          fontWeight: FontWeight.bold),
-                    )),
-                          ),
-                        ),
-                         const  SizedBox(width: 10),
-                    Expanded(
+            Center( 
+              child: Container(
+        height: heightprofile,
+        width: widthprofile,
+        decoration: BoxDecoration(gradient: const LinearGradient( begin: Alignment.topLeft,
+          end: Alignment.bottomRight, colors: [
+            Color.fromARGB(255, 60, 2, 195),
+        Color.fromRGBO(121, 76, 226, 1),
+          ],),
+          borderRadius: const BorderRadius.only(
+            bottomLeft: Radius.circular(50), // Raio para o canto inferior esquerdo
+            bottomRight: Radius.circular(50), // Raio para o canto inferior direito
+          ),
+         
+        boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.5), // Cor da sombra
+              spreadRadius: 8, // Raio de espalhamento da sombra
+              blurRadius: 9, // Raio de desfoque da sombra
+              offset: const Offset(0, 4), // Deslocamento da sombra em relação ao Container
+            ),
+          ],
+        ),
+        
+                child: Stack(
+                  children: [
+                    Positioned(
+                      left: 100,
+                      top: 0,
+                      bottom: 0,
                       child: Container(
-                        padding: const EdgeInsets.all(1),
-                       
-                        height: MediaQuery.of(context).size.height * 0.1,
-                        width: MediaQuery.of(context).size.height * 0.15,
-                        decoration:  BoxDecoration(
-                           border: Border.all(color: Color.fromARGB(255, 0, 0, 0), width: 1),
-                                      color: const Color.fromARGB(255, 255, 255, 255),
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(40),
+                        width: widthprofile,
+                        height: heightprofile / 2,
+                        decoration: const BoxDecoration(
+                          image: DecorationImage(
+                            image:
+                                AssetImage('lib/assets/petregistration.png'),
+                            fit: BoxFit.contain,
                           ),
                         ),
-                        child: TextButton(
-                            onPressed: () {
-                  /// colocar funcao para localizar veterinario mais proximo
-                            },
-                            child:   Text(
-                  '⚙️',
-                  style: TextStyle(
-                      color: const Color.fromARGB(255, 0, 0, 0),
-                      fontSize: fontSizeall,
-                      fontWeight: FontWeight.bold),
-                            )),
                       ),
                     ),
-                       const  SizedBox(width: 10),
-                    Expanded(
-                      child: Container(
-                        padding: const EdgeInsets.all(1),
-                        height: MediaQuery.of(context).size.height * 0.1,
-                        width: MediaQuery.of(context).size.height * 0.15,
-                        decoration:  BoxDecoration(
-                            border: Border.all(color: Color.fromARGB(255, 0, 0, 0), width: 1),
-                                      color: const Color.fromARGB(255, 255, 255, 255),
-                          borderRadius: const BorderRadius.all(
-                            Radius.circular(40),
+                    Positioned(
+                      left: MediaQuery.of(context).devicePixelRatio *
+                          1, // ajuste conforme necessário
+            
+                      bottom: MediaQuery.of(context).devicePixelRatio * 5,
+                      child: Column(
+                        children: [
+                          Text(
+                            ' Name: Bernardo ',
+                            textAlign: TextAlign.left,
+                            style: TextStyle(
+                                color: const Color.fromARGB(255, 255, 255, 255),
+                                fontSize: fontSizeall),
                           ),
-                        ),
-                        child: TextButton(
-                            onPressed: () {  Navigator.of(context)
-                                  .pushNamed(AppRoutes.LOGIN);
-                  
-                            },
-                            child:   Text(
-                  'Back',
-                  style: TextStyle(
-                      color: const Color.fromARGB(255, 0, 0, 0),
-                      fontSize: fontSizeall,
-                      fontWeight: FontWeight.bold),
-                            )),
+                          Text(
+                            ' Age: 10',
+                            textAlign: TextAlign.left,
+                            style: TextStyle(
+                                color:const Color.fromARGB(255, 255, 255, 255),
+                                fontSize: fontSizeall),
+                          ),
+                        ],
                       ),
-                    ),      const  SizedBox(width: 10),
-                    ],
-                  ),
-                ),        const  SizedBox(height: 10),
+                    ),
                   ],
                 ),
-              
+              ),
+            ),
+           const SizedBox(
+              height: 20,
+              width: 100,
+            ),
+            SingleChildScrollView(scrollDirection: Axis.horizontal,
+              child: Row(children: [
+                SizedBox(width: MediaQuery.of(context).size.width * 0.02),
+                Column(
+                  children: [
+                    GestureDetector(
+                      onTap: (){},
+                      child: CircleAvatar(backgroundColor:const Color.fromARGB(255, 60, 2, 195),
+                        //child: Text(''),
+                        radius: avatarRadius,
+                         backgroundImage: const AssetImage('lib/assets/alarmicon.png'), 
+                      ),
+                    ),
+                    ConstrainedBox(
+                      constraints:const BoxConstraints(maxWidth:90 ),
+                      child: Text(
+                        'Task',
+                        style: TextStyle(fontSize: fontSizeall, color: Colors.black), overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                  ],
+                ),SizedBox( width: MediaQuery.of(context).size.width * 0.044),Column(
+                  children: [
+                    GestureDetector(
+                      onTap: (){},
+                      child: CircleAvatar(backgroundColor: const Color.fromARGB(255, 60, 2, 195),
+                      //  child: Text(''),
+                        radius: avatarRadius,
+                         backgroundImage: const AssetImage('lib/assets/Vaccination.png'), 
+                      ),
+                    ),
+                    ConstrainedBox(
+                      constraints:const BoxConstraints(maxWidth:90 ),
+                      child: Text(
+                        'Vaccine',
+                        style: TextStyle(fontSize: fontSizeall, color: Colors.black), overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                  ],
+                ),SizedBox( width: MediaQuery.of(context).size.width * 0.044),
+               Column(
+                  children: [
+                    GestureDetector(
+                      onTap: (){},
+                      child: CircleAvatar(backgroundColor:const Color.fromARGB(255, 60, 2, 195),
+                      //  child: Text(''),
+                        radius: avatarRadius,
+                         backgroundImage: const AssetImage('lib/assets/parksnearyouicon.png'), 
+                      ),
+                    ),
+                    ConstrainedBox(
+                      constraints: const BoxConstraints(maxWidth:90 ),
+                      child: Text(
+                        'Parks',
+                        style: TextStyle(fontSize: fontSizeall, color: Colors.black), overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                  ],
+                ),SizedBox( width: MediaQuery.of(context).size.width * 0.044),
+                 Column(
+                  children: [
+                    GestureDetector(
+                      onTap: (){},
+                      child: CircleAvatar(backgroundColor:const Color.fromARGB(255, 60, 2, 195),
+                       // child: Text(''),
+                        radius: avatarRadius,
+                         backgroundImage: const AssetImage('lib/assets/FoodRegisterIcon.png'), 
+                      ),
+                    ),
+                    ConstrainedBox(
+                      constraints:const BoxConstraints(maxWidth:90 ),
+                      child: Text(
+                        'Foody',
+                        style: TextStyle(fontSize: fontSizeall, color: Colors.black), overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                  ],
+                ),SizedBox( width: MediaQuery.of(context).size.width * 0.044),Column(
+                  children: [
+                    GestureDetector(
+                      onTap: (){},
+                      child: CircleAvatar(backgroundColor:const Color.fromARGB(255, 60, 2, 195),
+                        //child: Text(''),
+                        radius: avatarRadius,
+                         backgroundImage: const AssetImage('lib/assets/bathicon.png'), 
+                      ),
+                    ),
+                    ConstrainedBox(
+                      constraints: const BoxConstraints(maxWidth:90 ),
+                      child: Text(
+                        'Bath',
+                        style: TextStyle(fontSize: fontSizeall, color: Colors.black), overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                  ],
+                ),SizedBox( width: MediaQuery.of(context).size.width * 0.044),
+            
+              ]),
+            ),
+          SafeArea(bottom: false,
+            child: Center( 
+                child: Column(mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    
+                   Positioned (  left: 100,
+                      top: 0,
+                      bottom: 0,
+
+                      child: Container(
+                        height: heightprofile,
+                        width: widthprofile,
+                        decoration: BoxDecoration(gradient: const LinearGradient( begin: Alignment.bottomCenter,
+                                end: Alignment.topCenter, colors: [
+                                  Color.fromARGB(255, 60, 2, 195),
+                        Color.fromRGBO(121, 76, 226, 1),
+                                ],),
+                                borderRadius: const BorderRadius.only(
+                                  topLeft: Radius.circular(50), // Raio para o canto inferior esquerdo
+                                  topRight: Radius.circular(50), // Raio para o canto inferior direito
+                                ),
+                         
+                        boxShadow: [
+                                  BoxShadow(
+                      color: Colors.grey.withOpacity(0.5), // Cor da sombra
+                      spreadRadius: 8, // Raio de espalhamento da sombra
+                      blurRadius: 9, // Raio de desfoque da sombra
+                      offset: const Offset(0, 4), // Deslocamento da sombra em relação ao Container
+                                  ),
+                                ],
+                        ),
+                      ),
+                    ),
+                  ],
+                  
+                ),),
+          ),  
+          
+          
           ],
-        ));
+        ),
+        
+      ),
+    );
   }
 }

@@ -26,8 +26,8 @@ class _ForgotPageState extends State<ForgotPage> {
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: [
-             Color.fromARGB(255, 255, 255, 255),
-               Color.fromARGB(230, 245, 245, 245),
+             Color.fromARGB(255, 60, 2, 195),
+            Color.fromRGBO(121, 76, 226, 1),
             ],
           ),
         ),
@@ -37,7 +37,7 @@ class _ForgotPageState extends State<ForgotPage> {
              Center(
                child: Animate(
                  child: Image.asset(
-                   'lib/files/forgoticon.png',
+                   'lib/assets/forgoticon.png',
                    width: 150,
                    height: 150,
                  ).animate().moveY(
@@ -98,7 +98,7 @@ class _ForgotPageState extends State<ForgotPage> {
                         padding: const EdgeInsets.all(1.0),
                         width: 300.0,
                         decoration: const BoxDecoration(
-                          color: Color.fromARGB(255, 0, 0, 0),
+                          color:  Color.fromARGB(255, 74, 6, 235),
                           borderRadius: BorderRadius.all(
                             Radius.circular(20),
                           ),
@@ -119,7 +119,7 @@ class _ForgotPageState extends State<ForgotPage> {
                         padding:  const EdgeInsets.all(1.0),
                         width: 300.0,
                         decoration:  const BoxDecoration(
-                          color: Color.fromARGB(255, 0, 0, 0),
+                          color:  Color.fromARGB(255, 74, 6, 235),
                           borderRadius: BorderRadius.all(
                             Radius.circular(20),
                           ),
