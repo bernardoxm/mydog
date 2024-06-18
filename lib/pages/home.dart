@@ -58,15 +58,7 @@ class _HomePageState extends State<HomePage> {
                     bottomRight: Radius.circular(
                         50), // Raio para o canto inferior direito
                   ),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.5), // Cor da sombra
-                      spreadRadius: 8, // Raio de espalhamento da sombra
-                      blurRadius: 9, // Raio de desfoque da sombra
-                      offset: const Offset(0,
-                          4), // Deslocamento da sombra em relação ao Container
-                    ),
-                  ],
+                 
                 ),
                 child: Stack(
                   children: [
@@ -252,7 +244,7 @@ class _HomePageState extends State<HomePage> {
                     child:  const Center(
                       child: Text('List'),
                     ),
-                    height: heightprofile,
+                    height: MediaQuery.of(context).size.height * 0.38,
                     width: widthprofile,
                     decoration: BoxDecoration(
                       gradient: const LinearGradient(
@@ -274,7 +266,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                   SizedBox(height: MediaQuery.of(context).size.height * 0.01),
                   Container(
-                    height: 80,
+                    height: MediaQuery.of(context).size.height * 0.093,
                     width: widthprofile,
                     decoration: BoxDecoration(
                       gradient: const LinearGradient(
@@ -298,7 +290,7 @@ class _HomePageState extends State<HomePage> {
 
                       padding: const EdgeInsets.all(5.0),
                       child: Row(
-                        children: [  SizedBox(width: MediaQuery.of(context).size.width * .3),
+                        children: [  SizedBox(width: MediaQuery.of(context).size.width * 0.3),
                           Column(
                             children: [
                                 GestureDetector(
@@ -315,6 +307,7 @@ class _HomePageState extends State<HomePage> {
                             ],
                           ),SizedBox(width: MediaQuery.of(context).size.width * .1),
                            Column(
+                            
                             children: [
                                 GestureDetector(
                         onTap: () {Navigator.of(context).pushNamed(AppRoutes.LOGIN);},
@@ -326,7 +319,7 @@ class _HomePageState extends State<HomePage> {
                               const AssetImage('lib/assets/logout.png'),
                         ),
                       ),
-                             const Text('Logout', style: TextStyle(color: Colors.white),)
+                             const Text('Logout', style: TextStyle(color: Colors.white, ),)
                             ],
                           ),
                         ],

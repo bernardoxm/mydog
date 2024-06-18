@@ -62,7 +62,7 @@ class _ForgotPageState extends State<ForgotPage> {
                         'Reset your Password, please put your email and submit',
                         style: TextStyle(
                           fontSize: 20.0,
-                          color: Color.fromARGB(255, 0, 0, 0),
+                          color: Color.fromARGB(255, 255, 255, 255),
                           decoration: TextDecoration.none,
                         ),
                         textAlign: TextAlign.center,
