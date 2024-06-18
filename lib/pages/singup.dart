@@ -286,10 +286,10 @@ class _SingUpState extends State<SingUpPage> {
           SnackBar(content: Text('Please select an image first')),
         );
       }
-      Navigator.of(context).pushNamed(AppRoutes.LOGIN);
+      Navigator.of(context).pushNamed(AppRoutes.HOME);
                       },
                       child: Text(
-                        'Sing Up',
+                        'Sign Up',
                       ),
                     ),
                   ),

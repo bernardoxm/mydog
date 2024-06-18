@@ -9,5 +9,5 @@ static const HOME = '/home.dart';
   // ignore: constant_identifier_names
   static const FORGOT = '/forgot.dart';
   // ignore: constant_identifier_names
-  static const SINGUP = '/singup.dart';
+  static const SIGNUP = '/singup.dart';
 }

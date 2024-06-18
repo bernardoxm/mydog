@@ -59,7 +59,7 @@ class _LoginPageState extends State<LoginPage>
                               children: [
                                 Column(
                                   children: [
-                                    Text(
+                                    const Text(
                                       'MyPet',
                                       style: TextStyle(
                                         fontSize: 40,
@@ -106,7 +106,7 @@ class _LoginPageState extends State<LoginPage>
                                         _showLoginForm = true;
                                       });
                                     },
-                                    child: Text('Login'),
+                                    child: const Text('Login'),
                                   ),
                                 ),
                                 SizedBox(
@@ -118,10 +118,10 @@ class _LoginPageState extends State<LoginPage>
                                       child: TextButton(
                                         onPressed: () {
                                           Navigator.of(context)
-                                              .pushNamed(AppRoutes.SINGUP);
+                                              .pushNamed(AppRoutes.SIGNUP);
                                         },
                                         child: Text(
-                                          'Don\'t have an account? Sing UP',
+                                          'Don\'t have an account? Sign  UP',
                                         
                                         ),
                                       ),

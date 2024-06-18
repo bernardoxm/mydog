@@ -55,7 +55,7 @@ class MyApp extends StatelessWidget {
         AppRoutes.LOGIN: (ctx) => const LoginPage(),
         AppRoutes.HOME: (ctx) => const HomePage(),
         AppRoutes.FORGOT: (ctx) => const ForgotPage(),
-        AppRoutes.SINGUP: (ctx) => const SingUpPage(),
+        AppRoutes.SIGNUP: (ctx) => const SingUpPage(),
       },
     );
   }
