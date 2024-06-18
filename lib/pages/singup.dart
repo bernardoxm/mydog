@@ -1,10 +1,11 @@
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:mydog/controler/image_remove_bg.dart';
 import 'package:mydog/routes/routes.dart';
-import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 
 class SingUpPage extends StatefulWidget {
@@ -17,30 +18,68 @@ class SingUpPage extends StatefulWidget {
 class _SingUpState extends State<SingUpPage> {
   File? image;
 
-  Future<void> _pickImage() async {
-    try {
-      final ImagePicker _picker = ImagePicker();
-      final XFile? pickedFile = await _picker.pickImage(source: ImageSource.gallery);
-
-      if (pickedFile != null) {
-        final Directory appDir = await getApplicationDocumentsDirectory();
-        final String fileName = basename(pickedFile.path);
-        final String savedPath = join(appDir.path, fileName);
-        final File savedImage = await File(pickedFile.path).copy(savedPath);
-
-        setState(() {
-          image = savedImage;
-        });
-      }
-    } catch (e) {
-      // Handle any exceptions here
-      print("Error picking image: $e");
-    }
-  }
-  
-
   @override
   Widget build(BuildContext context) {
+ Future<void> _pickImage() async {
+  try {
+    final ImagePicker _picker = ImagePicker();
+    final XFile? pickedFile = await _picker.pickImage(source: ImageSource.gallery);
+
+    if (pickedFile != null) {
+      final Directory appDir = await getApplicationDocumentsDirectory();
+      final Directory profileDir = Directory('${appDir.path}/profile');
+
+      if (!await profileDir.exists()) {
+        await profileDir.create(recursive: true);
+      }
+
+      final String savedPath = '${profileDir.path}/photoprofile.png';
+      print('Saving image to: $savedPath');
+
+      final File savedImage = await File(pickedFile.path).copy(savedPath);
+
+      setState(() {
+        image = savedImage;
+      });
+
+      print('Image saved at: $savedPath');
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('No image selected')),
+      );
+    }
+  } catch (e) {
+    print("Error picking image: $e");
+  }
+}
+
+ Future<void> _removeBgAndSaveImage(File imageFile) async {
+    try {
+      final Uint8List processedImage = await ApiClient().removeBgApi(imageFile); 
+
+      final Directory appDir = await getApplicationDocumentsDirectory();
+      final Directory profileDir = Directory('${appDir.path}/profile');
+
+      if (!await profileDir.exists()) {
+        await profileDir.create(recursive: true);
+      }
+
+      final String savedPath = '${profileDir.path}/photoprofile.png';
+      final File savedImage = File(savedPath);
+
+      await savedImage.writeAsBytes(processedImage);
+
+      setState(() {
+        image = savedImage;
+      });
+
+      print('Image saved at: $savedPath');
+    } catch (e) {
+      print('Error removing background and saving image: $e');
+    }
+  }
+
+
     double fontSizeall = MediaQuery.of(context).size.width * 0.045;
     return Scaffold(
       body: Container(
@@ -70,13 +109,13 @@ class _SingUpState extends State<SingUpPage> {
                         fontWeight: FontWeight.bold,
                       ),
                     ).animate().moveY(
-                      begin: -25,
-                      end: 15,
-                      curve: Curves.easeInOut,
-                      duration: 1000.ms,
-                    ),
-                  ), 
-                  const SizedBox(height: 20,),
+                          begin: -25,
+                          end: 15,
+                          curve: Curves.easeInOut,
+                          duration: 1000.ms,
+                        ),
+                  ),
+                  const SizedBox(height: 20),
                   Padding(
                     padding: const EdgeInsets.all(1),
                     child: Animate(
@@ -90,14 +129,12 @@ class _SingUpState extends State<SingUpPage> {
                               width: 150,
                               height: 150,
                             ).animate().moveY(
-                                begin: -25,
-                                end: 15,
-                                curve: Curves.easeInOut,
-                                duration: 1000.ms),
+                              begin: -25,
+                              end: 15,
+                              curve: Curves.easeInOut,
+                              duration: 1000.ms),
                     ),
                   ),
-                
-                
                   const SizedBox(height: 20),
                   Padding(
                     padding: const EdgeInsets.all(8),
@@ -111,7 +148,8 @@ class _SingUpState extends State<SingUpPage> {
                                 borderRadius: BorderRadius.all(
                                   Radius.circular(20),
                                 ),
-                                borderSide: BorderSide(width: 1, color: Colors.black)),
+                                borderSide:
+                                    BorderSide(width: 1, color: Colors.black)),
                             errorStyle: TextStyle(
                               color: const Color.fromARGB(255, 0, 0, 0),
                               fontSize: fontSizeall,
@@ -128,7 +166,8 @@ class _SingUpState extends State<SingUpPage> {
                                 borderRadius: BorderRadius.all(
                                   Radius.circular(20),
                                 ),
-                                borderSide: BorderSide(width: 1, color: Colors.black)),
+                                borderSide:
+                                    BorderSide(width: 1, color: Colors.black)),
                             errorStyle: TextStyle(
                               color: const Color.fromARGB(255, 0, 0, 0),
                               fontSize: fontSizeall,
@@ -145,7 +184,8 @@ class _SingUpState extends State<SingUpPage> {
                                 borderRadius: BorderRadius.all(
                                   Radius.circular(20),
                                 ),
-                                borderSide: BorderSide(width: 1, color: Colors.black)),
+                                borderSide:
+                                    BorderSide(width: 1, color: Colors.black)),
                             errorStyle: TextStyle(
                               color: const Color.fromARGB(255, 0, 0, 0),
                               fontSize: fontSizeall,
@@ -162,7 +202,8 @@ class _SingUpState extends State<SingUpPage> {
                                 borderRadius: BorderRadius.all(
                                   Radius.circular(20),
                                 ),
-                                borderSide: BorderSide(width: 1, color: Colors.black)),
+                                borderSide:
+                                    BorderSide(width: 1, color: Colors.black)),
                             errorStyle: TextStyle(
                               color: const Color.fromARGB(255, 0, 0, 0),
                               fontSize: fontSizeall,
@@ -179,7 +220,8 @@ class _SingUpState extends State<SingUpPage> {
                                 borderRadius: BorderRadius.all(
                                   Radius.circular(20),
                                 ),
-                                borderSide: BorderSide(width: 1, color: Colors.black)),
+                                borderSide:
+                                    BorderSide(width: 1, color: Colors.black)),
                             errorStyle: TextStyle(
                               color: const Color.fromARGB(255, 0, 0, 0),
                               fontSize: fontSizeall,
@@ -196,7 +238,8 @@ class _SingUpState extends State<SingUpPage> {
                                 borderRadius: BorderRadius.all(
                                   Radius.circular(20),
                                 ),
-                                borderSide: BorderSide(width: 1, color: Colors.black)),
+                                borderSide:
+                                    BorderSide(width: 1, color: Colors.black)),
                             errorStyle: TextStyle(
                               color: const Color.fromARGB(255, 0, 0, 0),
                               fontSize: fontSizeall,
@@ -208,18 +251,6 @@ class _SingUpState extends State<SingUpPage> {
                       ],
                     ),
                   ),
-                  Container( 
-                    padding: const EdgeInsets.all(1.0),
-                    width: 300.0,
-                    decoration: const BoxDecoration(
-                      color: Color.fromARGB(255, 74, 6, 235),
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(20),
-                      ),
-                    ), child: TextButton(
-                    onPressed: _pickImage,
-                    child: Text('Pet Photo'),
-                  ),),  const SizedBox(height: 10),
                   Container(
                     padding: const EdgeInsets.all(1.0),
                     width: 300.0,
@@ -230,7 +261,33 @@ class _SingUpState extends State<SingUpPage> {
                       ),
                     ),
                     child: TextButton(
-                      onPressed: () { },
+                      onPressed: () async {
+                        _pickImage();
+                      },
+                      child: Text('Pet Photo'),
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  Container(
+                    padding: const EdgeInsets.all(1.0),
+                    width: 300.0,
+                    decoration: const BoxDecoration(
+                      color: Color.fromARGB(255, 74, 6, 235),
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(20),
+                      ),
+                    ),
+                    child: TextButton(
+                     onPressed: () async {
+      if (image != null) {
+        await _removeBgAndSaveImage(image!);
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Please select an image first')),
+        );
+      }
+      Navigator.of(context).pushNamed(AppRoutes.LOGIN);
+                      },
                       child: Text(
                         'Sing Up',
                       ),
@@ -263,5 +320,7 @@ class _SingUpState extends State<SingUpPage> {
         ),
       ),
     );
-  }
+  } 
+
+
 }

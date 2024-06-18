@@ -1,4 +1,7 @@
+import 'dart:io'; // Para usar FileImage caso necessário
+
 import 'package:flutter/material.dart';
+import 'package:mydog/controler/menu_itens.dart';
 import 'package:mydog/routes/routes.dart';
 
 class HomePage extends StatefulWidget {
@@ -11,16 +14,12 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   double sizeHProfile = 390;
   double sizeVProfile = 90;
-
   double border = 40;
 
   @override
   Widget build(BuildContext context) {
     final orientation = MediaQuery.of(context).orientation;
-    final double widthprofile = orientation == Orientation.portrait
-        ? MediaQuery.of(context).size.width * 1
-        : MediaQuery.of(context).size.width * 1;
-
+    final double widthprofile = MediaQuery.of(context).size.width;
     final double heightprofile = orientation == Orientation.portrait
         ? MediaQuery.of(context).size.height * 0.4
         : MediaQuery.of(context).size.height * 0.90;
@@ -28,12 +27,10 @@ class _HomePageState extends State<HomePage> {
         ? MediaQuery.of(context).size.width * 0.07
         : MediaQuery.of(context).size.width * 0.05;
 
-//conseitos de screen
     double fontSizeall = MediaQuery.of(context).size.width * 0.045;
-    double heightbox = MediaQuery.of(context).size.width * 0.21;
-    double widithbox = MediaQuery.of(context).size.width * 0.91;
-    double widthphoto = MediaQuery.of(context).size.width * 0.21;
-    double heightphoto = MediaQuery.of(context).size.width * 0.21;
+
+    String imagePath = '../data/user/0/com.example.mydog/app_flutter/profile/photoprofile.png';
+    bool imageExists = File(imagePath).existsSync();
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -53,34 +50,31 @@ class _HomePageState extends State<HomePage> {
                     ],
                   ),
                   borderRadius: const BorderRadius.only(
-                    bottomLeft: Radius.circular(
-                        50), // Raio para o canto inferior esquerdo
-                    bottomRight: Radius.circular(
-                        50), // Raio para o canto inferior direito
+                    bottomLeft: Radius.circular(50),
+                    bottomRight: Radius.circular(50),
                   ),
-                 
                 ),
                 child: Stack(
                   children: [
                     Positioned(
                       left: 100,
-                      top: 0,
-                      bottom: 0,
+                      top: MediaQuery.of(context).size.height * 0.17,
+                      bottom: 1,
                       child: Container(
-                        width: widthprofile,
+                        width: widthprofile/1.3,
                         height: heightprofile / 2,
-                        decoration: const BoxDecoration(
+                        decoration: BoxDecoration(
                           image: DecorationImage(
-                            image: AssetImage('lib/assets/petregistration.png'),
+                            image: imageExists
+                                ? FileImage(File(imagePath)) as ImageProvider
+                                : const AssetImage('lib/assets/petregistration.png'),
                             fit: BoxFit.contain,
                           ),
                         ),
                       ),
                     ),
                     Positioned(
-                      left: MediaQuery.of(context).devicePixelRatio *
-                          1, // ajuste conforme necessário
-
+                      left: MediaQuery.of(context).devicePixelRatio * 1,
                       bottom: MediaQuery.of(context).devicePixelRatio * 5,
                       child: Column(
                         children: [
@@ -111,129 +105,56 @@ class _HomePageState extends State<HomePage> {
             ),
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
-              child: Row(children: [
-                SizedBox(width: MediaQuery.of(context).size.width * 0.02),
-                Column(
-                  children: [
-                    GestureDetector(
-                      onTap: () {},
-                      child: CircleAvatar(
-                        backgroundColor: const Color.fromARGB(255, 60, 2, 195),
-                        //child: Text(''),
-                        radius: avatarRadius,
-                        backgroundImage:
-                            const AssetImage('lib/assets/alarmicon.png'),
-                      ),
-                    ),
-                    ConstrainedBox(
-                      constraints: const BoxConstraints(maxWidth: 90),
-                      child: Text(
-                        'Task',
-                        style: TextStyle(
-                            fontSize: fontSizeall, color: Colors.black),
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(width: MediaQuery.of(context).size.width * 0.044),
-                Column(
-                  children: [
-                    GestureDetector(
-                      onTap: () {},
-                      child: CircleAvatar(
-                        backgroundColor: const Color.fromARGB(255, 60, 2, 195),
-                        //  child: Text(''),
-                        radius: avatarRadius,
-                        backgroundImage:
-                            const AssetImage('lib/assets/Vaccination.png'),
-                      ),
-                    ),
-                    ConstrainedBox(
-                      constraints: const BoxConstraints(maxWidth: 90),
-                      child: Text(
-                        'Vaccine',
-                        style: TextStyle(
-                            fontSize: fontSizeall, color: Colors.black),
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(width: MediaQuery.of(context).size.width * 0.044),
-                Column(
-                  children: [
-                    GestureDetector(
-                      onTap: () {},
-                      child: CircleAvatar(
-                        backgroundColor: const Color.fromARGB(255, 60, 2, 195),
-                        //  child: Text(''),
-                        radius: avatarRadius,
-                        backgroundImage:
-                            const AssetImage('lib/assets/parksnearyouicon.png'),
-                      ),
-                    ),
-                    ConstrainedBox(
-                      constraints: const BoxConstraints(maxWidth: 90),
-                      child: Text(
-                        'Parks',
-                        style: TextStyle(
-                            fontSize: fontSizeall, color: Colors.black),
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(width: MediaQuery.of(context).size.width * 0.044),
-                Column(
-                  children: [
-                    GestureDetector(
-                      onTap: () {},
-                      child: CircleAvatar(
-                        backgroundColor: const Color.fromARGB(255, 60, 2, 195),
-                        // child: Text(''),
-                        radius: avatarRadius,
-                        backgroundImage:
-                            const AssetImage('lib/assets/FoodRegisterIcon.png'),
-                      ),
-                    ),
-                    ConstrainedBox(
-                      constraints: const BoxConstraints(maxWidth: 90),
-                      child: Text(
-                        'Foody',
-                        style: TextStyle(
-                            fontSize: fontSizeall, color: Colors.black),
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(width: MediaQuery.of(context).size.width * 0.044),
-                Column(
-                  children: [
-                    GestureDetector(
-                      onTap: () {},
-                      child: CircleAvatar(
-                        backgroundColor: const Color.fromARGB(255, 60, 2, 195),
-                        //child: Text(''),
-                        radius: avatarRadius,
-                        backgroundImage:
-                            const AssetImage('lib/assets/bathicon.png'),
-                      ),
-                    ),
-                    ConstrainedBox(
-                      constraints: const BoxConstraints(maxWidth: 90),
-                      child: Text(
-                        'Bath',
-                        style: TextStyle(
-                            fontSize: fontSizeall, color: Colors.black),
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(width: MediaQuery.of(context).size.width * 0.044),
-              ]),
+              child: Row(
+                children: [
+                  SizedBox(width: MediaQuery.of(context).size.width * 0.02),
+                  buildIconColumn(
+                    context,
+                    'lib/assets/alarmicon.png',
+                    'Task',
+                    avatarRadius,
+                    fontSizeall,
+                    () {},
+                  ),
+                  SizedBox(width: MediaQuery.of(context).size.width * 0.044),
+                  buildIconColumn(
+                    context,
+                    'lib/assets/Vaccination.png',
+                    'Vaccine',
+                    avatarRadius,
+                    fontSizeall,
+                    () {},
+                  ),
+                  SizedBox(width: MediaQuery.of(context).size.width * 0.044),
+                  buildIconColumn(
+                    context,
+                    'lib/assets/parksnearyouicon.png',
+                    'Parks',
+                    avatarRadius,
+                    fontSizeall,
+                    () {},
+                  ),
+                  SizedBox(width: MediaQuery.of(context).size.width * 0.044),
+                  buildIconColumn(
+                    context,
+                    'lib/assets/FoodRegisterIcon.png',
+                    'Foody',
+                    avatarRadius,
+                    fontSizeall,
+                    () {},
+                  ),
+                  SizedBox(width: MediaQuery.of(context).size.width * 0.044),
+                 buildIconColumn(
+                    context,
+                    'lib/assets/bathicon.png',
+                    'Bath',
+                    avatarRadius,
+                    fontSizeall,
+                    () {},
+                  ),
+                  SizedBox(width: MediaQuery.of(context).size.width * 0.044),
+                ],
+              ),
             ),
             SizedBox(height: MediaQuery.of(context).size.height * 0.01),
             Center(
@@ -241,7 +162,7 @@ class _HomePageState extends State<HomePage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
-                    child:  const Center(
+                    child: const Center(
                       child: Text('List'),
                     ),
                     height: MediaQuery.of(context).size.height * 0.38,
@@ -255,76 +176,70 @@ class _HomePageState extends State<HomePage> {
                           Color.fromRGBO(237, 237, 237, 1),
                         ],
                       ),
-                      borderRadius: const BorderRadius.only(
-                        topLeft: Radius.circular(50),
-                        topRight: Radius.circular(50),
-                        bottomLeft: Radius.circular(50),
-                        bottomRight: Radius.circular(50),
+                      borderRadius: const BorderRadius.all(
+                        Radius.circular(50),
                       ),
-                    
                     ),
                   ),
                   SizedBox(height: MediaQuery.of(context).size.height * 0.01),
                   Container(
-                    height: MediaQuery.of(context).size.height * 0.093,
+                    height: MediaQuery.of(context).size.height * 0.12,
                     width: widthprofile,
                     decoration: BoxDecoration(
                       gradient: const LinearGradient(
                         begin: Alignment.topCenter,
                         end: Alignment.bottomCenter,
                         colors: [
-                              Color.fromRGBO(121, 76, 226, 1),
-                                Color.fromARGB(255, 60, 2, 195),
-                  
+                          Color.fromRGBO(121, 76, 226, 1),
+                          Color.fromARGB(255, 60, 2, 195),
                         ],
                       ),
                       borderRadius: const BorderRadius.only(
-                        topLeft: Radius.circular(
-                            50), // Raio para o canto inferior esquerdo
-                        topRight: Radius.circular(
-                            50), // Raio para o canto inferior direito
+                        topLeft: Radius.circular(50),
+                        topRight: Radius.circular(50),
                       ),
-                     
                     ),
                     child: Padding(
-
                       padding: const EdgeInsets.all(5.0),
                       child: Row(
-                        children: [  SizedBox(width: MediaQuery.of(context).size.width * 0.3),
+                        children: [
+                          SizedBox(width: MediaQuery.of(context).size.width * 0.3),
                           Column(
                             children: [
-                                GestureDetector(
-                        onTap: () {},
-                        child: CircleAvatar(
-                          backgroundColor: const Color.fromARGB(255, 60, 2, 195),
-                         
-                          radius: MediaQuery.of(context).size.width * 0.06,
-                          backgroundImage:
-                              const AssetImage('lib/assets/profile.png'),
-                        ),
-                      ),
-                           const  Text('Profile', style: TextStyle(color: Colors.white),)
+                              GestureDetector(
+                                onTap: () {},
+                                child: CircleAvatar(
+                                  backgroundColor: const Color.fromARGB(255, 60, 2, 195),
+                                  radius: MediaQuery.of(context).size.width * 0.06,
+                                  backgroundImage: const AssetImage('lib/assets/profile.png'),
+                                ),
+                              ),
+                              const Text(
+                                'Profile',
+                                style: TextStyle(color: Colors.white),
+                              )
                             ],
-                          ),SizedBox(width: MediaQuery.of(context).size.width * .1),
-                           Column(
-                            
+                          ),
+                          SizedBox(width: MediaQuery.of(context).size.width * .1),
+                          Column(
                             children: [
-                                GestureDetector(
-                        onTap: () {Navigator.of(context).pushNamed(AppRoutes.LOGIN);},
-                        child: CircleAvatar(
-                          backgroundColor: const Color.fromARGB(255, 60, 2, 195),
-                         
-                          radius: MediaQuery.of(context).size.width * 0.06,
-                          backgroundImage:
-                              const AssetImage('lib/assets/logout.png'),
-                        ),
-                      ),
-                             const Text('Logout', style: TextStyle(color: Colors.white, ),)
+                              GestureDetector(
+                                onTap: () {
+                                  Navigator.of(context).pushNamed(AppRoutes.LOGIN);
+                                },
+                                child: CircleAvatar(
+                                  backgroundColor: const Color.fromARGB(255, 60, 2, 195),
+                                  radius: MediaQuery.of(context).size.width * 0.06,
+                                  backgroundImage: const AssetImage('lib/assets/logout.png'),
+                                ),
+                              ),
+                              const Text(
+                                'Logout',
+                                style: TextStyle(color: Colors.white),
+                              )
                             ],
                           ),
                         ],
-                        
-                        
                       ),
                     ),
                   ),
@@ -336,4 +251,6 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
+
 }
+
