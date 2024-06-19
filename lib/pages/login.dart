@@ -109,7 +109,7 @@ class _LoginPageState extends State<LoginPage>
                                     child: const Text('Login'),
                                   ),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 10,
                                 ),
                                 Column(
@@ -120,7 +120,7 @@ class _LoginPageState extends State<LoginPage>
                                           Navigator.of(context)
                                               .pushNamed(AppRoutes.SIGNUP);
                                         },
-                                        child: Text(
+                                        child: const Text(
                                           'Don\'t have an account? Sign  UP',
                                         
                                         ),
@@ -159,20 +159,20 @@ class _LoginPageState extends State<LoginPage>
                         SizedBox(
                             height: MediaQuery.of(context).size.height * 0.1),
                      
-                        Container( width: containerOrientation,
+                        SizedBox( width: containerOrientation,
                           child: TextFormField(
                             controller: _emailController,
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               hintText: 'Email',
                               fillColor: Color.fromARGB(255, 255, 255, 255),
-                              border: const OutlineInputBorder(
+                              border:  OutlineInputBorder(
                                   borderRadius: BorderRadius.all(
                                     Radius.circular(20),
                                   ),
                                   borderSide:
                                       BorderSide(width: 1, color: Colors.black)),
                               errorStyle: TextStyle(
-                                color: const Color.fromARGB(255, 0, 0, 0),
+                                color:  Color.fromARGB(255, 0, 0, 0),
                               
                               ),
                               filled: true,
@@ -182,18 +182,18 @@ class _LoginPageState extends State<LoginPage>
                                 EmailFieldValidator.validate(value!),
                           ),
                         ),
-                        SizedBox(
+                      const  SizedBox(
                           height: 10,
                         ),
-                        Container(width: containerOrientation,
+                        SizedBox(width: containerOrientation,
                           child: TextFormField(
                             controller: _passwordController,
-                            decoration: InputDecoration(
+                            decoration:const  InputDecoration(
                               hintText: 'Password',
                               fillColor: Color.fromARGB(255, 255, 255, 255),
                               filled: true,
                               errorStyle: TextStyle(
-                                color: const Color.fromARGB(255, 0, 0, 0),
+                                color:  Color.fromARGB(255, 0, 0, 0),
                                 
                               ),
                               border: OutlineInputBorder(
@@ -207,7 +207,7 @@ class _LoginPageState extends State<LoginPage>
                             validator: PasswordFieldValidator.validate,
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
                         SizedBox(
@@ -237,7 +237,7 @@ class _LoginPageState extends State<LoginPage>
                                             .pushNamed(AppRoutes.HOME);
                                       }
                                     },
-                                    child: Text(
+                                    child: const Text(
                                       'Login',
                                     ),
                                   ),
@@ -254,7 +254,7 @@ class _LoginPageState extends State<LoginPage>
                                   Navigator.of(context)
                                       .pushNamed(AppRoutes.FORGOT);
                                 },
-                                child: Text(
+                                child:  const Text(
                                   'Forgot Password?',
                                 ),
                               ),
@@ -266,7 +266,7 @@ class _LoginPageState extends State<LoginPage>
                                     _showLoginForm = false;
                                   });
                                 },
-                                child: Text(
+                                child: const Text(
                                   'Back',
                                 ),
                               ),

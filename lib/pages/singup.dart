@@ -96,7 +96,7 @@ class _SingUpState extends State<SingUpPage> {
         child: Center(
           child: ListView(
             shrinkWrap: true,
-            padding: EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(8.0),
             children: [
               Column(
                 children: [
@@ -105,7 +105,7 @@ class _SingUpState extends State<SingUpPage> {
                       'Welcome',
                       style: TextStyle(
                         fontSize: fontSizeall,
-                        color: Color.fromARGB(255, 255, 255, 255),
+                        color:const Color.fromARGB(255, 255, 255, 255),
                         fontWeight: FontWeight.bold,
                       ),
                     ).animate().moveY(
@@ -143,7 +143,7 @@ class _SingUpState extends State<SingUpPage> {
                         TextFormField(
                           decoration: InputDecoration(
                             hintText: 'E-mail',
-                            fillColor: Color.fromARGB(255, 255, 255, 255),
+                            fillColor:const Color.fromARGB(255, 255, 255, 255),
                             border: const OutlineInputBorder(
                                 borderRadius: BorderRadius.all(
                                   Radius.circular(20),
@@ -179,7 +179,7 @@ class _SingUpState extends State<SingUpPage> {
                         TextFormField(
                           decoration: InputDecoration(
                             hintText: 'Pet Birthday',
-                            fillColor: Color.fromARGB(255, 255, 255, 255),
+                            fillColor:const Color.fromARGB(255, 255, 255, 255),
                             border: const OutlineInputBorder(
                                 borderRadius: BorderRadius.all(
                                   Radius.circular(20),
@@ -197,7 +197,7 @@ class _SingUpState extends State<SingUpPage> {
                         TextFormField(
                           decoration: InputDecoration(
                             hintText: 'Registration',
-                            fillColor: Color.fromARGB(255, 255, 255, 255),
+                            fillColor:const Color.fromARGB(255, 255, 255, 255),
                             border: const OutlineInputBorder(
                                 borderRadius: BorderRadius.all(
                                   Radius.circular(20),
@@ -215,7 +215,7 @@ class _SingUpState extends State<SingUpPage> {
                         TextFormField(
                           decoration: InputDecoration(
                             hintText: 'Password',
-                            fillColor: Color.fromARGB(255, 255, 255, 255),
+                            fillColor:const Color.fromARGB(255, 255, 255, 255),
                             border: const OutlineInputBorder(
                                 borderRadius: BorderRadius.all(
                                   Radius.circular(20),
@@ -264,7 +264,7 @@ class _SingUpState extends State<SingUpPage> {
                       onPressed: () async {
                         _pickImage();
                       },
-                      child: Text('Pet Photo'),
+                      child:const Text('Pet Photo'),
                     ),
                   ),
                   const SizedBox(height: 10),
@@ -283,12 +283,12 @@ class _SingUpState extends State<SingUpPage> {
         await _removeBgAndSaveImage(image!);
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Please select an image first')),
+         const SnackBar(content: Text('Please select an image first')),
         );
       }
       Navigator.of(context).pushNamed(AppRoutes.HOME);
                       },
-                      child: Text(
+                      child: const Text(
                         'Sign Up',
                       ),
                     ),
@@ -307,7 +307,7 @@ class _SingUpState extends State<SingUpPage> {
                       onPressed: () {
                         Navigator.of(context).pushNamed(AppRoutes.LOGIN);
                       },
-                      child: Text(
+                      child: const Text(
                         'Back',
                       ),
                     ),
