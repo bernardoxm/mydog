@@ -35,7 +35,7 @@ dependencies:
   flutter_screenutil: ^5.5.3+2
   image_picker: ^0.8.4+4
   path_provider: ^2.0.2
-  background_remover: ^0.0.3
+  
   remove_background: ^0.0.1
 
 

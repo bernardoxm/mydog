@@ -45,7 +45,7 @@ class _SingUpState extends State<SingUpPage> {
       print('Image saved at: $savedPath');
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('No image selected')),
+        const SnackBar(content: Text('No image selected')),
       );
     }
   } catch (e) {

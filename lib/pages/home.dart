@@ -63,13 +63,16 @@ class _HomePageState extends State<HomePage> {
                       child: Container(
                         width: widthprofile/1.3,
                         height: heightprofile / 2,
+                        
                         decoration: BoxDecoration(
+                         
                           image: DecorationImage(
                             image: imageExists
                                 ? FileImage(File(imagePath)) as ImageProvider
                                 : const AssetImage('lib/assets/petregistration.png'),
                             fit: BoxFit.contain,
                           ),
+                           borderRadius: const BorderRadius.only( bottomRight: Radius.circular(50),  bottomLeft: Radius.circular(50),),
                         ),
                       ),
                     ),

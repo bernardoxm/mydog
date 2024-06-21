@@ -17,14 +17,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.11.0"
-  background_remover:
-    dependency: "direct main"
-    description:
-      name: background_remover
-      sha256: "576b961b37d245c5e3c9920457f496fd2729cda05c2b4a78f00b9ed11fbda8c0"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.0.3"
   boolean_selector:
     dependency: transitive
     description:
